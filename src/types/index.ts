@@ -1,7 +1,7 @@
 // --> DEFININDO E TIPANDO OS ATRIBUTOS DO OBJETO CLIENTE
 export interface Cliente{
     id: string;
-    cpF_cnpj: string;
+    cpfCnpj: string;
     rg: string;
     dataNascimento: Date;
     nome: string;
@@ -12,4 +12,13 @@ export interface Cliente{
     patrimonio: number;
     estadoCivil: "Solteiro" | "Casado" | "Viúvo" | "Divorciado";
     codigoAgencia: number;
+}
+
+export interface Contas{
+    id: string;
+    cpfCnpjCliente: string;
+    tipo: "corrente" | "poupanca";
+    saldo: number;
+    limiteCredito: number;
+    creditoDisponivel: number;
 }
