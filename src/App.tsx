@@ -1,9 +1,10 @@
 // src/App.tsx
 import ListaClientes from "./components/listaClientes";
 
+
 function App() {
   return (
-    <div>
+    <div >
       <ListaClientes />
     </div>
   );
