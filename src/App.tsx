@@ -1,11 +1,11 @@
 // src/App.tsx
-import ListaClientes from "./components/listaClientes";
+import ListaClientes from "./components/Clientes/listaClientes";
 
 
 function App() {
   return (
     <div>
-      <ListaClientes />
+      <ListaClientes/>
     </div>
   );
 }

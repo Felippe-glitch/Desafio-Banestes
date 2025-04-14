@@ -39,7 +39,7 @@ export async function fetchClientes(): Promise<Cliente[]> {
         cpfCnpj: normalizado.cpfCnpj,
         rg: normalizado.rg,
         nome: normalizado.nome,
-        nomeSocial: normalizado.nomeSocial !== "Não informado" ? normalizado.nomeSocial : undefined,
+        nomeSocial: normalizado.nomeSocial,
         email: normalizado.email,
         telefone: normalizado.telefone,
         endereco: normalizado.endereco,
