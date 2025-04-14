@@ -6,12 +6,6 @@
 
 @custom-variant dark (&:is(.dark *));
 
-*{
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-}
-
 @theme inline {
     --radius-sm: calc(var(--radius) - 4px);
     --radius-md: calc(var(--radius) - 2px);
