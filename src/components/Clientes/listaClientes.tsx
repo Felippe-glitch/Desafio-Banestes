@@ -46,7 +46,7 @@ const ListaClientes: React.FC = () => {
   };
 
   return (
-    <div className="p-6 w-full max-w-4xl mx-auto">
+    <div className="p-6 w-full max-w-7xl mx-auto">
       <form
         className="flex items-center gap-2 m-3"
         onSubmit={(e) => e.preventDefault()}
@@ -71,41 +71,43 @@ const ListaClientes: React.FC = () => {
           <p>Carregando clientes...</p>
         ) : (
           <>
-            <table className="w-full table-auto text-center" >
+            <table className="w-full table-auto border-collapse">
               <thead>
-                <tr>
-                  <th className="text-center">Nome</th>
-                  <th className="text-center">Nome Social</th>
-                  <th className="text-center">CPF OU CNPJ</th>
-                  <th className="text-center">E-mail</th>
-                  <th className="text-center">Código da Agência</th>
+                <tr className="bg-gray-100 text-gray-700">
+                  <th className="px-4 py-2 text-center">Nome</th>
+                  <th className="px-4 py-2 text-center">Nome Social</th>
+                  <th className="px-4 py-2 text-center">CPF OU CNPJ</th>
+                  <th className="px-4 py-2 text-center">E-mail</th>
+                  <th className="px-4 py-2 text-center">Código da Agência</th>
                 </tr>
               </thead>
               <tbody>
-                {clientesPaginados.map((cliente) => (
-                  <tr key={cliente.id}>
-                    <td className="text-center">{cliente.nome}</td>
-                    <td className="text-center">{cliente.nomeSocial}</td>
-                    <td className="text-center">{cliente.cpfCnpj}</td>
-                    <td className="text-center">{cliente.email}</td>
-                    <td className="text-center">{cliente.codigoAgencia}</td>
+                {clientesPaginados.map((cliente, index) => (
+                  <tr key={cliente.id} className="odd:bg-gray-50 hover:bg-gray-100">
+                    <td className="px-4 py-4">{cliente.nome}</td>
+                    <td className="px-4 py-4">{cliente.nomeSocial}</td>
+                    <td className="px-4 py-4 text-center">{cliente.cpfCnpj}</td>
+                    <td className="px-4 py-4 text-center">{cliente.email}</td>
+                    <td className="px-4 py-4 text-center">{cliente.codigoAgencia}</td>
+                    <td className="px-4 py-4 text-blue-600 hover:underline cursor-pointer">
+                      <a href="#">Ver detalhes</a>
+                    </td>
                   </tr>
                 ))}
               </tbody>
             </table>
 
-            <div className="flex justify-between items-center mt-4">
-              <Button onClick={irParaPaginaAnterior} disabled={paginaAtual === 1} className="mousePointer">
-                <span className="noneSelect">Próxima</span>
+
+            <div className="flex justify-between items-center mt-6 px-2">
+              <Button onClick={irParaPaginaAnterior} disabled={paginaAtual === 1} className="cursor-pointer">
+                <span className="noneSelect">Anterior</span>
               </Button>
-              <span className="noneSelect">
-                Página {paginaAtual} de {totalPaginas}
+
+              <span className="text-sm text-gray-600">
+                <span className="noneSelect">Página {paginaAtual} de {totalPaginas}</span>
               </span>
-              <Button
-                onClick={irParaProximaPagina}
-                disabled={paginaAtual === totalPaginas}
-                className="mousePointer"
-              >
+
+              <Button onClick={irParaProximaPagina} disabled={paginaAtual === totalPaginas} className="cursor-pointer">
                 <span className="noneSelect">Próxima</span>
               </Button>
             </div>
