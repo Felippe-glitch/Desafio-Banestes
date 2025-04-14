@@ -24,7 +24,8 @@ const ListaClientes: React.FC = () => {
     const termo = termoBusca.toLowerCase();
     return (
       cliente.nome.toLowerCase().includes(termo) ||
-      cliente.cpfCnpj.toLowerCase().includes(termo)
+      cliente.cpfCnpj.toLowerCase().includes(termo) ||
+      (cliente.nomeSocial || "").toLowerCase().includes(termo)
     );
   });
 
