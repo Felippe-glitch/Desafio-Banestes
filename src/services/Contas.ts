@@ -1,3 +1,3 @@
 import * as Papa from "papaparse";
-import { Cliente } from "../types/index";
+import { Cliente } from "../types/index.ts";
 
