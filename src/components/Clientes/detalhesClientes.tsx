@@ -53,7 +53,10 @@ const DetalhesCliente: React.FC = () => {
 
   return (
     <div className="p-6 max-w-5xl mx-auto bg-white rounded-xl shadow-sm">
-      <h1 className="text-2xl font-bold mb-6">{cliente.nome}</h1>
+      <h1 className="text-2xl font-bold mb-6 flex items-center gap-2">
+        {cliente.nome}
+        <span className="text-sm text-gray-500">(ID: {cliente.id})</span>
+      </h1>
 
       <div className="grid md:grid-cols-2 gap-4 mb-8 text-sm">
         <div><strong>Nome Social:</strong> {cliente.nomeSocial || "Não informado"}</div>
