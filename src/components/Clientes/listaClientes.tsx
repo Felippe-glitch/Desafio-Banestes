@@ -15,7 +15,8 @@ const ListaClientes: React.FC = () => {
   useEffect(() => {
     async function carregarClientes() {
       const dados = await fetchClientes();
-      setClientes(dados);
+      const dadosOrdenados = dados.sort((a, b) => a.nome.localeCompare(b.nome));
+      setClientes(dadosOrdenados);
     }
 
     carregarClientes();
