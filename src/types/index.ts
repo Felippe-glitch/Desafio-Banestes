@@ -2,7 +2,7 @@
 export interface Cliente{
     id: string;
     cpfCnpj: string;
-    rg: string;
+    rg?: string;
     dataNascimento: Date;
     nome: string;
     nomeSocial?: string;
