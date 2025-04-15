@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { fetchClientes } from "../../services/Clientes.ts";
-import { Cliente } from "../../types/index.ts"; 
+import { Cliente } from "../../types/index.ts";
 import { Button } from "../ui/button.jsx";
 import { Input } from "../ui/input.jsx";
 import { Search } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const ListaClientes: React.FC = () => {
   const [clientes, setClientes] = useState<Cliente[]>([]);
@@ -91,7 +92,9 @@ const ListaClientes: React.FC = () => {
                     <td className="px-4 py-4 text-center">{cliente.email}</td>
                     <td className="px-4 py-4 text-center">{cliente.codigoAgencia}</td>
                     <td className="px-4 py-4 text-blue-600 hover:underline cursor-pointer">
-                      <a href="#">Ver detalhes</a>
+                      <Link to={`/clientes/${cliente.id}`}>
+                        Ver detalhes
+                      </Link>
                     </td>
                   </tr>
                 ))}

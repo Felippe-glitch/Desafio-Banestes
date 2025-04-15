@@ -1,13 +1,15 @@
-// src/App.tsx
-import ListaClientes from "./components/Clientes/listaClientes.jsx";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-// import ClienteDetalhes from "./pages/ClienteDetalhes"; 
+import ListaClientes from "./components/Clientes/listaClientes.tsx";
+import DetalhesCliente from "./components/Clientes/detalhesClientes.tsx";
 
 function App() {
   return (
-    <div>
-      <ListaClientes/>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<ListaClientes />} />
+        <Route path="/clientes/:id" element={<DetalhesCliente />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

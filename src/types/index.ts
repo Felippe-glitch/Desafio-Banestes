@@ -14,7 +14,7 @@ export interface Cliente{
     codigoAgencia: number;
 }
 
-export interface Contas{
+export interface Conta{
     id: string;
     cpfCnpjCliente: string;
     tipo: "corrente" | "poupanca";
@@ -23,9 +23,14 @@ export interface Contas{
     creditoDisponivel: number;
 }
 
-interface Agencia {
+export interface Agencia {
     id: string;
     codigo: number;
     nome: string;
     endereco: string;
 }
+
+export interface ClienteDetalhado extends Cliente {
+    contas: Conta[];
+    agencias: Agencia[];
+  }
