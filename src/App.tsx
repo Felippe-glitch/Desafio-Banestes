@@ -1,5 +1,5 @@
 // src/App.tsx
-import ListaClientes from "./components/Clientes/listaClientes";
+import ListaClientes from "./components/Clientes/listaClientes.jsx";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 // import ClienteDetalhes from "./pages/ClienteDetalhes"; 
 

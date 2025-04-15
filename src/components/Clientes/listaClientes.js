@@ -1,8 +1,8 @@
 import { jsx as _jsx, jsxs as _jsxs, Fragment as _Fragment } from "react/jsx-runtime";
 import { useEffect, useState } from "react";
-import { fetchClientes } from "../../services/Clientes";
-import { Button } from "../ui/button";
-import { Input } from "../ui/input";
+import { fetchClientes } from "../../services/Clientes.jsx";
+import { Button } from "../ui/button.jsx";
+import { Input } from "../ui/input.jsx";
 import { Search } from 'lucide-react';
 const ListaClientes = () => {
     const [clientes, setClientes] = useState([]);

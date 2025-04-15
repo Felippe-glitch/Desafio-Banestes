@@ -1,5 +1,5 @@
 import * as Papa from "papaparse";
-import { Cliente } from "../types/index";
+import { Cliente } from "../types/index.ts";
 
 const urlClientes =
   "https://docs.google.com/spreadsheets/d/1PBN_HQOi5ZpKDd63mouxttFvvCwtmY97Tb5if5_cdBA/gviz/tq?tqx=out:csv&sheet=clientes";

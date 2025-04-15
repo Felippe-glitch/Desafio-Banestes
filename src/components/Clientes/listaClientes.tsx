@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { fetchClientes } from "../../services/Clientes";
-import { Cliente } from "../../types";
-import { Button } from "../ui/button";
-import { Input } from "../ui/input";
-import { Search } from 'lucide-react'
+import { fetchClientes } from "../../services/Clientes.ts";
+import { Cliente } from "../../types/index.ts"; 
+import { Button } from "../ui/button.jsx";
+import { Input } from "../ui/input.jsx";
+import { Search } from 'lucide-react';
 
 const ListaClientes: React.FC = () => {
   const [clientes, setClientes] = useState<Cliente[]>([]);
