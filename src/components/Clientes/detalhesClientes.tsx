@@ -75,6 +75,7 @@ const DetalhesCliente: React.FC = () => {
         <div><strong>E-mail:</strong> {cliente.email}</div>
         <div><strong>RG:</strong> {cliente.rg}</div>
         <div><strong>Data de Nascimento:</strong> {cliente.dataNascimento?.toLocaleDateString()}</div>
+        <div><strong>Endereço: </strong>{cliente.endereco}</div>
         <div><strong>Renda Anual:</strong> {formatCurrency(cliente.rendaAnual)}</div>
         <div><strong>Patrimônio:</strong> {formatCurrency(cliente.patrimonio)}</div>
         <div><strong>Estado Civil:</strong> {cliente.estadoCivil}</div>
