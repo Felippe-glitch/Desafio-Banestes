@@ -1,12 +1,14 @@
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Cliente, Conta, Agencia } from "../../types/index.ts";
 import { fetchClientes } from "../../services/Clientes.ts";
 import { fetchContas } from "../../services/Contas.ts";
 import { fetchAgencias } from "../../services/Agencias.ts";
+import { ArrowLeft } from "lucide-react";
 
 const DetalhesCliente: React.FC = () => {
   const { id } = useParams<{ id: string }>();
+  const navigate = useNavigate();
 
   const [cliente, setCliente] = useState<Cliente | null>(null);
   const [contas, setContas] = useState<Conta[]>([]);
@@ -49,10 +51,19 @@ const DetalhesCliente: React.FC = () => {
     if (text.toLowerCase() === "poupanca") return "Poupança";
     return text.charAt(0).toUpperCase() + text.slice(1).toLowerCase();
   };
+
   if (!cliente) return <p>Carregando detalhes do cliente...</p>;
 
   return (
-    <div className="p-6 max-w-5xl mx-auto bg-white rounded-xl shadow-sm">
+    <div className="mt-12 p-6 md:p-10 max-w-4xl mx-auto bg-white rounded-xl shadow-sm">
+      <button
+        onClick={() => navigate(-1)}
+        className="mb-4 flex items-center gap-2 text-blue-600 hover:underline text-sm cursor-pointer"
+      >
+        <ArrowLeft className="w-4 h-4" />
+        Voltar
+      </button>
+
       <h1 className="text-2xl font-bold mb-6 flex items-center gap-2">
         {cliente.nome}
         <span className="text-sm text-gray-500">(ID: {cliente.id})</span>
