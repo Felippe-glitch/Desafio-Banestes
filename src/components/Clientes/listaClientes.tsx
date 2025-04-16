@@ -74,33 +74,59 @@ const ListaClientes: React.FC = () => {
           <p>Carregando clientes...</p>
         ) : (
           <>
-            <table className="w-full table-auto border-collapse">
-              <thead>
-                <tr className="bg-gray-100 text-gray-700">
-                  <th className="px-4 py-2 text-center">Nome</th>
-                  <th className="px-4 py-2 text-center">Nome Social</th>
-                  <th className="px-4 py-2 text-center">CPF OU CNPJ</th>
-                  <th className="px-4 py-2 text-center">E-mail</th>
-                  <th className="px-4 py-2 text-center">Código da Agência</th>
-                </tr>
-              </thead>
-              <tbody>
-                {clientesPaginados.map((cliente, index) => (
-                  <tr key={cliente.id} className="odd:bg-gray-50 hover:bg-gray-100">
-                    <td className="px-4 py-4">{cliente.nome}</td>
-                    <td className="px-4 py-4">{cliente.nomeSocial}</td>
-                    <td className="px-4 py-4 text-center">{cliente.cpfCnpj}</td>
-                    <td className="px-4 py-4 text-center">{cliente.email}</td>
-                    <td className="px-4 py-4 text-center">{cliente.codigoAgencia}</td>
-                    <td className="px-4 py-4 text-blue-600 hover:underline cursor-pointer">
-                      <Link to={`/clientes/${cliente.id}`}>
-                        Ver detalhes
-                      </Link>
-                    </td>
+            <div className="hidden md:block">
+              <table className="w-full border-collapse text-sm hidden md:table">
+                <thead>
+                  <tr className="bg-gray-100 text-gray-700">
+                    <th className="px-4 py-2 text-left">Nome</th>
+                    <th className="px-4 py-2 text-left">Nome Social</th>
+                    <th className="px-4 py-2 text-left">CPF/CNPJ</th>
+                    <th className="px-4 py-2 text-left">E-mail</th>
+                    <th className="px-4 py-2 text-left">Agência</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  {clientesPaginados.map((cliente) => (
+                    <tr key={cliente.id} className="odd:bg-gray-50 hover:bg-gray-100">
+                      <td className="px-4 py-3">{cliente.nome}</td>
+                      <td className="px-4 py-3">{cliente.nomeSocial}</td>
+                      <td className="px-4 py-3">{cliente.cpfCnpj}</td>
+                      <td className="px-4 py-3">{cliente.email}</td>
+                      <td className="px-4 py-3">{cliente.codigoAgencia}</td>
+                      <td className="px-4 py-3 text-blue-600 hover:underline">
+                        <Link to={`/clientes/${cliente.id}`}>Ver detalhes</Link>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+
+            {/* TABELA MOBILE */}
+            <div className="block md:hidden">
+              <table className="w-full border-collapse text-sm">
+                <thead>
+                  <tr className="bg-gray-100 text-gray-700">
+                    <th className="px-2 py-2 text-left">Nome</th>
+                    <th className="px-2 py-2 text-left">Nome Social</th>
+                    <th className="px-2 py-2 text-left">CPF/CNPJ</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {clientesPaginados.map((cliente) => (
+                    <tr
+                      key={cliente.id}
+                      onClick={() => (window.location.href = `/clientes/${cliente.id}`)}
+                      className="odd:bg-gray-50 hover:bg-gray-100 cursor-pointer transition-colors"
+                    >
+                      <td className="px-2 py-3 break-words">{cliente.nome}</td>
+                      <td className="px-2 py-3 break-words">{cliente.nomeSocial}</td>
+                      <td className="px-2 py-3 text-center">{cliente.cpfCnpj}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
 
 
             <div className="flex justify-between items-center mt-6 px-2">

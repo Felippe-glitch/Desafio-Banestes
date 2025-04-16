@@ -10,6 +10,28 @@
   user-select: none;
 }
 
+.header {
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #014689;
+}
+
+.logo {
+  width: 180px;
+  height: auto;
+  margin-left: 100px;
+  max-width: 1400px;
+  object-fit: cover;
+}
+
+@media (max-width: 768px) {
+  .logo {
+    width: 100px;
+    margin-left: 10px;
+  }
+}
+
 @theme inline {
     --radius-sm: calc(var(--radius) - 4px);
     --radius-md: calc(var(--radius) - 2px);
