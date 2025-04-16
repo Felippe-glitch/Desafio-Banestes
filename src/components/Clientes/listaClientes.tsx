@@ -5,12 +5,14 @@ import { Button } from "../ui/button.jsx";
 import { Input } from "../ui/input.jsx";
 import { Search } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const ListaClientes: React.FC = () => {
   const [clientes, setClientes] = useState<Cliente[]>([]);
   const [termoBusca, setTermoBusca] = useState("");
   const [paginaAtual, setPaginaAtual] = useState(1);
   const itensPorPagina = 10;
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function carregarClientes() {
@@ -116,7 +118,7 @@ const ListaClientes: React.FC = () => {
                   {clientesPaginados.map((cliente) => (
                     <tr
                       key={cliente.id}
-                      onClick={() => (window.location.href = `/clientes/${cliente.id}`)}
+                      onClick={() => navigate(`/clientes/${cliente.id}`)}
                       className="odd:bg-gray-50 hover:bg-gray-100 cursor-pointer transition-colors"
                     >
                       <td className="px-2 py-3 break-words">{cliente.nome}</td>
