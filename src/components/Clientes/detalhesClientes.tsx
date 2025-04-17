@@ -138,8 +138,18 @@ const DetalhesCliente: React.FC = () => {
 
       <h2 className="text-2xl font-semibold mb-4">Agência</h2>
       <div className="grid md:grid-cols-2 gap-4 mb-8 text-sm">
-        <div><strong>Nome:</strong> {agencia?.nome} ({cliente.codigoAgencia})</div>
-        <div><strong>Endereço da Agência:</strong> {agencia?.endereco}</div>
+        <div className="grid gap-1">
+          <strong className="text-sm">Nome:</strong>
+          <div className="border border-gray-300 rounded-md px-3 py-1 text-gray-700 text-sm">
+            {agencia?.nome} ({cliente.codigoAgencia})
+          </div>
+        </div>
+        <div className="grid gap-1">
+          <strong className="text-sm">Endereço:</strong>
+          <div className="border border-gray-300 rounded-md px-3 py-1 text-gray-700 text-sm">
+          {agencia?.endereco}
+          </div>
+        </div>
       </div>
 
       <h2 className="text-2xl font-semibold mb-2">Contas</h2>
