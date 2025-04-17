@@ -6,6 +6,8 @@ import { Input } from "../ui/input.jsx";
 import { Search } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import { formatarCpfCnpj } from "@/utils/utilitarios.ts";
+
 
 const ListaClientes: React.FC = () => {
   const [clientes, setClientes] = useState<Cliente[]>([]);
@@ -77,7 +79,7 @@ const ListaClientes: React.FC = () => {
         ) : (
           <>
             <div className="hidden md:block">
-              <table className="w-full border-collapse text-sm hidden md:table">
+              <table className="w-full table-fixed border-collapse text-sm hidden md:table">
                 <thead>
                   <tr className="bg-gray-100 text-gray-700">
                     <th className="px-4 py-2 text-left">Nome</th>
@@ -92,7 +94,7 @@ const ListaClientes: React.FC = () => {
                     <tr key={cliente.id} className="odd:bg-gray-50 hover:bg-gray-100">
                       <td className="px-4 py-3">{cliente.nome}</td>
                       <td className="px-4 py-3">{cliente.nomeSocial}</td>
-                      <td className="px-4 py-3">{cliente.cpfCnpj}</td>
+                      <td className="px-4 py-3">{formatarCpfCnpj(cliente.cpfCnpj)}</td>
                       <td className="px-4 py-3">{cliente.email}</td>
                       <td className="px-4 py-3">{cliente.codigoAgencia}</td>
                       <td className="px-4 py-3 text-blue-600 hover:underline">
@@ -106,7 +108,7 @@ const ListaClientes: React.FC = () => {
 
             {/* TABELA MOBILE */}
             <div className="block md:hidden">
-              <table className="w-full border-collapse text-sm">
+              <table className="w-full table-fixed border-collapse text-sm">
                 <thead>
                   <tr className="bg-gray-100 text-gray-700">
                     <th className="px-2 py-2 text-left">Nome</th>
@@ -123,7 +125,7 @@ const ListaClientes: React.FC = () => {
                     >
                       <td className="px-2 py-3 break-words">{cliente.nome}</td>
                       <td className="px-2 py-3 break-words">{cliente.nomeSocial}</td>
-                      <td className="px-2 py-3 text-center">{cliente.cpfCnpj}</td>
+                      <td className="px-2 py-3 text-center">{formatarCpfCnpj(cliente.cpfCnpj)}</td>
                     </tr>
                   ))}
                 </tbody>

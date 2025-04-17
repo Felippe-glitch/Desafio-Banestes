@@ -5,6 +5,7 @@ import { fetchClientes } from "../../services/Clientes.ts";
 import { fetchContas } from "../../services/Contas.ts";
 import { fetchAgencias } from "../../services/Agencias.ts";
 import { ArrowLeft } from "lucide-react";
+import { formatarCpfCnpj, getTipoDocumento } from "@/utils/utilitarios.ts";
 
 const DetalhesCliente: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -55,7 +56,7 @@ const DetalhesCliente: React.FC = () => {
   if (!cliente) return <p>Carregando detalhes do cliente...</p>;
 
   return (
-    <div className="mt-12 p-6 md:p-10 max-w-4xl mx-auto bg-white rounded-xl shadow-sm">
+    <div className="mt-2 p-6 md:p-10 max-w-4xl mx-auto bg-white rounded-xl shadow-sm">
       <button
         onClick={() => navigate(-1)}
         className="mb-4 flex items-center gap-2 text-blue-600 hover:underline text-sm cursor-pointer"
@@ -64,28 +65,86 @@ const DetalhesCliente: React.FC = () => {
         Voltar
       </button>
 
-      <h1 className="text-2xl font-bold mb-6 flex items-center gap-2">
+      <h1 className="text-2xl md:text-3xl font-bold mb-6 flex items-center gap-2">
         {cliente.nome}
         <span className="text-sm text-gray-500">(ID: {cliente.id})</span>
       </h1>
 
+      <div className="grid md:grid-cols-2 gap-4 mb-8">
+        {/* Coluna da esquerda */}
+        <div className="space-y-2">
+          <div className="grid gap-1">
+            <strong className="text-sm">Nome Social:</strong>
+            <div className="border border-gray-300 rounded-md px-3 py-1 text-gray-700 text-sm">
+              {cliente.nomeSocial || "Não informado"}
+            </div>
+          </div>
+          <div className="grid gap-1">
+            <strong className="text-sm">RG:</strong>
+            <div className="border border-gray-300 rounded-md px-3 py-1 text-gray-700 text-sm">
+              {cliente.rg || "Não informado"}
+            </div>
+          </div>
+          <div className="grid gap-1">
+            <strong className="text-sm">{getTipoDocumento(cliente.cpfCnpj)}:</strong>
+            <div className="border border-gray-300 rounded-md px-3 py-1 text-gray-700 text-sm">
+              {formatarCpfCnpj(cliente.cpfCnpj)}
+            </div>
+          </div>
+          <div className="grid gap-1">
+            <strong className="text-sm">Data de Nascimento:</strong>
+            <div className="border border-gray-300 rounded-md px-3 py-1 text-gray-700 text-sm">
+              {cliente.dataNascimento?.toLocaleDateString()}
+            </div>
+          </div>
+          <div className="grid gap-1">
+            <strong className="text-sm">Endereço:</strong>
+            <div className="border border-gray-300 rounded-md px-3 py-1 text-gray-700 text-sm">
+              {cliente.endereco}
+            </div>
+          </div>
+        </div>
+
+        {/* Coluna da direita */}
+        <div className="space-y-2">
+          <div className="grid gap-1">
+            <strong className="text-sm">Patrimônio:</strong>
+            <div className="border border-gray-300 rounded-md px-3 py-1 text-gray-700 text-sm">
+              {formatCurrency(cliente.patrimonio)}
+            </div>
+          </div>
+          <div className="grid gap-1">
+            <strong className="text-sm">Renda Anual:</strong>
+            <div className="border border-gray-300 rounded-md px-3 py-1 text-gray-700 text-sm">
+              {formatCurrency(cliente.rendaAnual)}
+            </div>
+          </div>
+          <div className="grid gap-1">
+            <strong className="text-sm">Estado Civil:</strong>
+            <div className="border border-gray-300 rounded-md px-3 py-1 text-gray-700 text-sm">
+              {cliente.estadoCivil}
+            </div>
+          </div>
+          <div className="grid gap-1">
+            <strong className="text-sm">E-mail:</strong>
+            <div className="border border-gray-300 rounded-md px-3 py-1 text-gray-700 text-sm">
+              {cliente.email}
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+      <h2 className="text-2xl font-semibold mb-4">Agência</h2>
       <div className="grid md:grid-cols-2 gap-4 mb-8 text-sm">
-        <div><strong>Nome Social:</strong> {cliente.nomeSocial || "Não informado"}</div>
-        <div><strong>CPF/CNPJ:</strong> {cliente.cpfCnpj}</div>
-        <div><strong>E-mail:</strong> {cliente.email}</div>
-        <div><strong>RG:</strong> {cliente.rg}</div>
-        <div><strong>Data de Nascimento:</strong> {cliente.dataNascimento?.toLocaleDateString()}</div>
-        <div><strong>Endereço: </strong>{cliente.endereco}</div>
-        <div><strong>Renda Anual:</strong> {formatCurrency(cliente.rendaAnual)}</div>
-        <div><strong>Patrimônio:</strong> {formatCurrency(cliente.patrimonio)}</div>
-        <div><strong>Estado Civil:</strong> {cliente.estadoCivil}</div>
-        <div><strong>Agência:</strong> {agencia?.nome} ({cliente.codigoAgencia})</div>
+        <div><strong>Nome:</strong> {agencia?.nome} ({cliente.codigoAgencia})</div>
         <div><strong>Endereço da Agência:</strong> {agencia?.endereco}</div>
       </div>
 
       <h3 className="text-xl font-semibold mb-2">Contas</h3>
       <div className="overflow-x-auto">
-        <table className="w-full text-left border border-gray-200 rounded-lg overflow-hidden">
+        <table className="w-full table-fixed text-left border border-gray-800 rounded-lg overflow-hidden">
           <thead className="bg-gray-100 text-sm">
             <tr>
               <th className="p-3">Tipo</th>
