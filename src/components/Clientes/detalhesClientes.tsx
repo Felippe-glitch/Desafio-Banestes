@@ -142,7 +142,7 @@ const DetalhesCliente: React.FC = () => {
         <div><strong>Endereço da Agência:</strong> {agencia?.endereco}</div>
       </div>
 
-      <h3 className="text-xl font-semibold mb-2">Contas</h3>
+      <h2 className="text-2xl font-semibold mb-2">Contas</h2>
       <div className="overflow-x-auto">
         <table className="w-full table-fixed text-left border border-gray-800 rounded-lg overflow-hidden">
           <thead className="bg-gray-100 text-sm">
