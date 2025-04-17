@@ -33,4 +33,4 @@ export interface Agencia {
 export interface ClienteDetalhado extends Cliente {
     contas: Conta[];
     agencias: Agencia[];
-  }
+}
