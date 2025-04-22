@@ -71,7 +71,6 @@ const DetalhesCliente: React.FC = () => {
       </h1>
 
       <div className="grid md:grid-cols-2 gap-4 mb-8">
-        {/* Coluna da esquerda */}
         <div className="space-y-2">
           <div className="grid gap-1">
             <strong className="text-sm">Nome Social:</strong>
@@ -154,7 +153,7 @@ const DetalhesCliente: React.FC = () => {
 
       <h2 className="text-2xl font-semibold mb-2">Contas</h2>
       <div className="overflow-x-auto">
-        <table className="w-full table-fixed text-left border border-gray-800 rounded-lg overflow-hidden">
+        <table className="w-full table-fixed text-center border border-gray-800 rounded-lg overflow-hidden">
           <thead className="bg-gray-100 text-sm">
             <tr>
               <th className="p-3">Tipo</th>
