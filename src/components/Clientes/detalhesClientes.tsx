@@ -8,26 +8,32 @@ import { ArrowLeft } from "lucide-react";
 import { formatarCpfCnpj, getTipoDocumento } from "@/utils/utilitarios.ts";
 
 const DetalhesCliente: React.FC = () => {
+  // Obtém o ID do cliente a partir da URL
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
 
+  // Estados locais para armazenar os dados do cliente, suas contas e sua agência
   const [cliente, setCliente] = useState<Cliente | null>(null);
   const [contas, setContas] = useState<Conta[]>([]);
   const [agencia, setAgencia] = useState<Agencia | null>(null);
 
+  // Efeito para carregar os dados assim que o componente for montado
   useEffect(() => {
     async function carregarDados() {
+      // Busca os clientes e seleciona o que tem o ID atual
       const clientes = await fetchClientes();
       const clienteSelecionado = clientes.find(c => c.id === id);
       setCliente(clienteSelecionado ?? null);
 
       if (clienteSelecionado) {
+        // Busca todas as contas e filtra as do cliente atual
         const contasTodas = await fetchContas();
         const contasCliente = contasTodas.filter(
           conta => conta.cpfCnpjCliente === clienteSelecionado.cpfCnpj
         );
         setContas(contasCliente);
 
+        // Busca as agências e seleciona a correspondente ao cliente
         const agencias = await fetchAgencias();
         const agenciaRelacionada = agencias.find(
           ag => ag.codigo === clienteSelecionado.codigoAgencia
@@ -39,7 +45,8 @@ const DetalhesCliente: React.FC = () => {
     carregarDados();
   }, [id]);
 
-  const formatCurrency = (value: number | undefined | null) => {
+   // Formata valores monetários para o padrão brasileiro — ou manda um "não informado"
+  const formatoCorreto = (value: number | undefined | null) => {
     if (typeof value !== "number" || isNaN(value)) return "Não informado";
     return value.toLocaleString("pt-BR", {
       style: "currency",
@@ -109,13 +116,13 @@ const DetalhesCliente: React.FC = () => {
           <div className="grid gap-1">
             <strong className="text-sm">Patrimônio:</strong>
             <div className="border border-gray-300 rounded-md px-3 py-1 text-gray-700 text-sm">
-              {formatCurrency(cliente.patrimonio)}
+              {formatoCorreto(cliente.patrimonio)}
             </div>
           </div>
           <div className="grid gap-1">
             <strong className="text-sm">Renda Anual:</strong>
             <div className="border border-gray-300 rounded-md px-3 py-1 text-gray-700 text-sm">
-              {formatCurrency(cliente.rendaAnual)}
+              {formatoCorreto(cliente.rendaAnual)}
             </div>
           </div>
           <div className="grid gap-1">
@@ -166,9 +173,9 @@ const DetalhesCliente: React.FC = () => {
             {contas.map((conta) => (
               <tr key={conta.id} className="border-t">
                 <td className="p-3">{capitalize(conta.tipo)}</td>
-                <td className="p-3">{formatCurrency(conta.saldo)}</td>
-                <td className="p-3">{formatCurrency(conta.limiteCredito)}</td>
-                <td className="p-3">{formatCurrency(conta.creditoDisponivel)}</td>
+                <td className="p-3">{formatoCorreto(conta.saldo)}</td>
+                <td className="p-3">{formatoCorreto(conta.limiteCredito)}</td>
+                <td className="p-3">{formatoCorreto(conta.creditoDisponivel)}</td>
               </tr>
             ))}
           </tbody>

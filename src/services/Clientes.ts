@@ -1,12 +1,20 @@
 import * as Papa from "papaparse";
 import { Cliente } from "../types/index.ts";
 
+// URL do Google Sheets exportado como CSV
 const urlClientes =
   "https://docs.google.com/spreadsheets/d/1PBN_HQOi5ZpKDd63mouxttFvvCwtmY97Tb5if5_cdBA/gviz/tq?tqx=out:csv&sheet=clientes";
 
+// Função auxiliar para limpar valores: remove espaços e substitui vazios por "Não informado"
 const limpaCampo = (valor: any): string =>
-  valor?.toString().trim() !== "" ? valor.toString().trim() : "Não informado";
+  typeof valor === "string" && valor.trim() !== ""
+    ? valor.trim()
+    : "Não informado";
 
+/**
+ * Busca e processa os dados de clientes a partir de uma planilha pública do Google Sheets
+ * @returns Lista de objetos do tipo Cliente
+ */
 export async function fetchClientes(): Promise<Cliente[]> {
   try {
     const response = await fetch(urlClientes);
@@ -17,6 +25,7 @@ export async function fetchClientes(): Promise<Cliente[]> {
 
     const csvText = await response.text();
 
+    // Converte o CSV para um array de objetos
     const result = Papa.parse(csvText, {
       header: true,
       skipEmptyLines: true,
@@ -26,6 +35,7 @@ export async function fetchClientes(): Promise<Cliente[]> {
       throw new Error("Nenhum dado de cliente encontrado no banco de clientes");
     }
 
+    // Mapeia e normaliza os dados dos clientes
     const clientes: Cliente[] = result.data.map((item: any) => {
       const normalizado = Object.fromEntries(
         Object.entries(item).map(([key, value]) => [

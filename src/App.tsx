@@ -7,7 +7,7 @@ function App() {
   return (
     <BrowserRouter>
       <header className="header">
-        <img src={logo} alt="Logo do Banestes" className="logo" />
+        <img src={logo} alt="Logo do Banestes" className="logo"/>
       </header>
       <Routes>
         <Route path="/" element={<ListaClientes />} />

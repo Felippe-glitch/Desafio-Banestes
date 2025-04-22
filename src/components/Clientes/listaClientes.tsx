@@ -16,6 +16,7 @@ const ListaClientes: React.FC = () => {
   const itensPorPagina = 10;
   const navigate = useNavigate();
 
+  // Carrega e ordena os clientes ao montar o componente
   useEffect(() => {
     async function carregarClientes() {
       const dados = await fetchClientes();
@@ -26,6 +27,7 @@ const ListaClientes: React.FC = () => {
     carregarClientes();
   }, []);
 
+  // Filtro com base no termo de busca (nome, CPF/CNPJ ou nome social)
   const clientesFiltrados = clientes.filter((cliente) => {
     const termo = termoBusca.toLowerCase();
     return (
@@ -35,11 +37,13 @@ const ListaClientes: React.FC = () => {
     );
   });
 
+  // Paginação dos clientes
   const totalPaginas = Math.ceil(clientesFiltrados.length / itensPorPagina);
   const indiceInicial = (paginaAtual - 1) * itensPorPagina;
   const indiceFinal = indiceInicial + itensPorPagina;
   const clientesPaginados = clientesFiltrados.slice(indiceInicial, indiceFinal);
 
+  // Navegação de página
   const irParaPaginaAnterior = () => {
     if (paginaAtual > 1) {
       setPaginaAtual(paginaAtual - 1);
