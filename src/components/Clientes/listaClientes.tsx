@@ -113,7 +113,7 @@ const ListaClientes: React.FC = () => {
               </table>
             </div>
 
-            {/* Tabela Tablet (entre md e lg) */}
+            {/* TABELA TABLET */}
             <div className="hidden md:block lg:hidden">
               <table className="w-full table-fixed border-collapse text-sm">
                 <thead>

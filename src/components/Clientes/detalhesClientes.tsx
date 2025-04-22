@@ -139,6 +139,8 @@ const DetalhesCliente: React.FC = () => {
         </div>
       </div>
 
+
+
       <h2 className="text-2xl font-semibold mb-4">Agência</h2>
       <div className="grid md:grid-cols-2 gap-4 mb-8 text-sm">
         <div className="grid gap-1">
@@ -157,22 +159,22 @@ const DetalhesCliente: React.FC = () => {
 
       <h2 className="text-2xl font-semibold mb-2">Contas</h2>
       <div className="overflow-x-auto">
-        <table className="w-full table-fixed text-center border border-gray-800 rounded-lg overflow-hidden">
-          <thead className="bg-gray-100">
+        <table className="w-full text-center border border-gray-800 rounded-lg overflow-hidden text-sm border-spacing-x-4">
+          <thead className="bg-gray-100 text-sm">
             <tr>
-              <th className="px-2 py-2">Tipo</th>
-              <th className="px-2 py-2">Saldo</th>
-              <th className="px-2 py-2">Limite</th>
-              <th className="px-2 py-2">Crédito Disponível</th>
+              <th className="px-2 py-2 w-1/4">Tipo</th>
+              <th className="px-2 py-2 w-1/4">Saldo</th>
+              <th className="px-2 py-2 w-1/4">Limite</th>
+              <th className="px-2 py-2 w-1/4">Crédito Disponível</th>
             </tr>
           </thead>
           <tbody>
             {contas.map((conta) => (
               <tr key={conta.id} className="border-t">
-                <td className="px-2 py-2">{capitalize(conta.tipo)}</td>
-                <td className="px-2 py-2">{formatoCorreto(conta.saldo)}</td>
-                <td className="px-2 py-2">{formatoCorreto(conta.limiteCredito)}</td>
-                <td className="px-2 py-2">{formatoCorreto(conta.creditoDisponivel)}</td>
+                <td className="px-2 py-2 whitespace-nowrap">{capitalize(conta.tipo)}</td>
+                <td className="px-2 py-2 whitespace-nowrap">{formatoCorreto(conta.saldo)}</td>
+                <td className="px-2 py-2 whitespace-nowrap">{formatoCorreto(conta.limiteCredito)}</td>
+                <td className="px-2 py-2 whitespace-nowrap">{formatoCorreto(conta.creditoDisponivel)}</td>
               </tr>
             ))}
           </tbody>
