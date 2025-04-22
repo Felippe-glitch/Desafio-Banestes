@@ -80,6 +80,8 @@ const ListaClientes: React.FC = () => {
       <div className="border rounded-lg p-4">
         {clientes.length === 0 ? (
           <p>Carregando clientes...</p>
+        ) : clientesFiltrados.length === 0 ? (
+          <p className="text-center text-gray-500 p-4">Nenhum cliente encontrado.</p>
         ) : (
           <>
             {/* Tabela Desktop (a partir de lg) */}
