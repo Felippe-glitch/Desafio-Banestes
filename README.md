@@ -1,5 +1,7 @@
 # 🚀 Desafio Banestes - Sistema para Consulta de Clientes
 
+**Acesse a aplicação online**: [desafio-banestes.netlify.app](https://desafio-banestes.netlify.app)
+
 ## 📄 Descrição
 
 Este repositório foi criado para o desafio lançado na **segunda fase da seleção para a vaga de Estagiário de TI no Banestes**. Nele está a minha solução para o desafio proposto: **criar uma aplicação front-end que consuma planilhas CSV armazenadas no Google Sheets**, estruturando os dados e exibindo-os de forma amigável para o usuário final.
@@ -19,7 +21,7 @@ Este repositório foi criado para o desafio lançado na **segunda fase da seleç
 11. Uso extensivo de **TypeScript**, com tipos definidos.
 12. Responsividade para diferentes tamanhos de tela.
 13. Acessibilidade considerada.
-14. Carregamento rápido, validado com ferramentas como **Lighthouse**.
+14. Carregamento rápido.
 
 ---
 
