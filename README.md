@@ -42,6 +42,8 @@ A aplicação é simples e intuitiva. Possui:
 - **TypeScript**
 - **React**
 - **Tailwind CSS**
+- **Papaparse**
+- **Shadcn/UI**
 
 ---
 
